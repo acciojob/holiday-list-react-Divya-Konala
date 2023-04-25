@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import './../styles/App.css';
+import Location  from "./Location";
 
 const App = () => {
     const cityList = [{ name: 'Goa', country: 'India' },
@@ -32,11 +33,17 @@ const App = () => {
     { name: 'Mount Abu', country: 'India' },
     { name: 'Tirupati', country: 'India' },
     ]
-    
+    let filteredCities= cityList.filter((item)=>item.country=='India');
   return (
     <div id="main">
                {/* Do not remove the main div */}
-               Holiday List
+               <ol>
+                {
+                  filteredCities.map((item,index)=>
+                       <Location key={`location${index+1}`} city={item.name}/>
+                  )
+                }
+               </ol>
     </div>
   )
 }
